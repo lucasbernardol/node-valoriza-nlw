@@ -1,4 +1,10 @@
 import { app } from './app';
+import { Database } from './database';
+
+/**
+ * Database connection
+ */
+Database.connect();
 
 const PORT = Number(process.env.PORT) || 3333;
 
