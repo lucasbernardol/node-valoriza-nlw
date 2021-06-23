@@ -5,7 +5,8 @@
   "author": "José Lucas",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "typeorm": "ts-node-dev --transpile-only node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
