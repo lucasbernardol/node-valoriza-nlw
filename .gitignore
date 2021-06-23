@@ -4,6 +4,9 @@ private/
 dist/
 build/
 
+# Typeorm
+ormconfig.json
+
 # Output 'tgz' files
 *.tgz
 
