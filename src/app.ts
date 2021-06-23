@@ -9,6 +9,7 @@ import helmet from 'helmet';
 
 import mainRoutes from './routes/index.routes';
 import usersRoutes from './routes/users.routes';
+import tagsRoutes from './routes/tags.routes';
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(morgan('dev'));
 
 app.use(mainRoutes);
 app.use(usersRoutes);
+app.use(tagsRoutes);
 
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {
