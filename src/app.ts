@@ -6,6 +6,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 
 import mainRoutes from './routes/index.routes';
+import usersRoutes from './routes/users.routes';
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
 app.use(mainRoutes);
+app.use(usersRoutes);
 
 export { app };
