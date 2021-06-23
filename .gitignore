@@ -1,0 +1,24 @@
+# directories
+node_modules/
+private/
+dist/
+build/
+
+# Output 'tgz' files
+*.tgz
+
+# Environment variables file
+.env
+.env.test
+.env.production
+
+# Visual Studio code extensions
+.vscode-test
+*.rest
+*.test
+
+# logs
+logs
+*.log
+yarn-debug.log*
+yarn-error.log*
