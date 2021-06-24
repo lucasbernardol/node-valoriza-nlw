@@ -11,6 +11,7 @@ import mainRoutes from './routes/index.routes';
 import usersRoutes from './routes/users.routes';
 import tagsRoutes from './routes/tags.routes';
 import sessionRoutes from './routes/sessions.routes';
+import complimentsRoutes from './routes/compliments.routes';
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(mainRoutes);
 app.use(usersRoutes);
 app.use(tagsRoutes);
 app.use(sessionRoutes);
+app.use(complimentsRoutes);
 
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {
