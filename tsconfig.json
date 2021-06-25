@@ -11,7 +11,7 @@
     "removeComments": true,
     "strict": false,
 
-    "typeRoots": ["./node_modules/@types", "./@types"],
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
     "esModuleInterop": true,
 
     "experimentalDecorators": true,
