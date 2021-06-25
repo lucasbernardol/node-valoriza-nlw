@@ -1,25 +1,20 @@
 import { NextFunction, Request, Response } from 'express';
+import { getCustomRepository } from 'typeorm';
 
-// temporary implementation
-export function ensureAdmin(
-  request: Request,
-  response: Response,
-  next: NextFunction
-) {
-  const isAdmin = true;
+import { UsersRepositories } from '../repositories/UsersRepositories';
 
-  const httpCode = 401;
+export function ensureAdmin() {
+  return async (request: Request, response: Response, next: NextFunction) => {
+    const { userId } = request;
 
-  const message = 'Unauthorized';
+    const usersRepositories = getCustomRepository(UsersRepositories);
 
-  if (!isAdmin) {
-    const error = {
-      httpCode,
-      message,
-    };
+    const { isAdmin } = await usersRepositories.findOne(userId);
 
-    return response.status(httpCode).json({ error });
-  }
+    if (!isAdmin) {
+      return response.sendStatus(401);
+    }
 
-  return next();
+    return next();
+  };
 }
