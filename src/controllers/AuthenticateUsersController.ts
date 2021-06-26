@@ -7,11 +7,11 @@ export class AuthenticateUsersController {
 
     const authenticationService = new AuhtenticateUsersService();
 
-    const { token, user } = await authenticationService.execute({
+    const { token, account } = await authenticationService.execute({
       email,
       password,
     });
 
-    return response.json({ token, user });
+    return response.json({ token, account });
   }
 }
