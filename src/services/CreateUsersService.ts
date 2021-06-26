@@ -1,6 +1,7 @@
 import { getCustomRepository } from 'typeorm';
+import { classToPlain } from 'class-transformer';
+
 import { UsersRepositories } from '../repositories/UsersRepositories';
-import bcrypt from 'bcrypt';
 
 type User = {
   name: string;
@@ -16,20 +17,18 @@ export class CreateUserService {
     const userExists = await usersRepository.findOne({ email });
 
     if (userExists) {
-      throw new Error('Unauthorized, invalid email address');
+      throw new Error('Invalid email address');
     }
-
-    const hash = await bcrypt.hash(password, 10);
 
     const userInstance = usersRepository.create({
       name,
       email,
-      password: hash,
+      password,
       isAdmin,
     });
 
     const created = await usersRepository.save(userInstance);
 
-    return created;
+    return classToPlain(created);
   }
 }
