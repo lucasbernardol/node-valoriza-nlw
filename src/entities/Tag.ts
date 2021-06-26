@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Expose } from 'class-transformer';
 import { v4 as uuid4 } from 'uuid';
 
 @Entity({ name: 'tags' })
@@ -21,6 +22,11 @@ export class Tag {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @Expose({ name: 'customId' })
+  public createCustomId(): string {
+    return `#${this.name}`;
+  }
 
   constructor() {
     if (!this.id) {
