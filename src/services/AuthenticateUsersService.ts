@@ -1,9 +1,9 @@
 import { getCustomRepository } from 'typeorm';
 import { UsersRepositories } from '../repositories/UsersRepositories';
 
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import jwtConfig from '../config/jwt';
+import { classToPlain } from 'class-transformer';
 
 type Authenticate = {
   email: string;
@@ -22,7 +22,7 @@ export class AuhtenticateUsersService {
       throw new Error('Invalid credentials');
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = user.compare(password);
 
     if (!isMatch) {
       throw new Error('Invalid credentials');
@@ -35,11 +35,11 @@ export class AuhtenticateUsersService {
       expiresIn,
     });
 
-    delete user.password;
+    const account = classToPlain(user);
 
     return {
       token,
-      user,
+      account,
     };
   }
 }
